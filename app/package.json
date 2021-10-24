@@ -6,6 +6,12 @@
     "prettify": "prettier --write \"./**/*.{json,js,ts,svelte,html}\""
   },
   "dependencies": {
+    "@googlemaps/google-maps-services-js": "^3.2.6",
+    "@mapbox/polyline": "^1.1.1",
+    "@tensorflow/tfjs-node": "^3.10.0",
+    "dotenv": "^10.0.0",
+    "geolib": "^3.3.3",
+    "got": "^11.8.2",
     "node-fetch": "^3.0.0",
     "postcss": "^8.3.11",
     "pug": "^3.0.2",
@@ -29,7 +35,8 @@
     "prettier-plugin-svelte": "^2.4.0",
     "snowpack": "^3.8.7",
     "svelte-preprocess": "^4.7.2",
-    "typescript": "^4.3.4"
+    "typescript": "^4.3.4",
+    "vercel": "^23.1.2"
   },
   "license": "UNLICENSED"
 }
