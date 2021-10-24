@@ -1,0 +1,13 @@
+{
+  "main": "index.js",
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "node-fetch": "^3.0.0",
+    "sharp": "^0.29.2"
+  },
+  "scripts": {
+    "start": "node ."
+  },
+  "type": "module",
+  "license": "UNLICENSED"
+}
