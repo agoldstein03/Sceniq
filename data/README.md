@@ -5,4 +5,4 @@ The script was designed to be idempotent. However, it is not guarunteed that the
 
 Syntax: `yarn start -- "*list*"` where `*list*` is a JSON list of lists, each of the format `[numeric ID of Unsplash collection, (rough) number of items in collection, pretty]`.
 
-The number of items in the collection can be rounded up without ill effect, but if set too low, some items will not be fetched. `pretty` should be `0` if the photos are categorized as "pretty", `1` if they should be categorized as "ugly".
+The number of items in the collection can be rounded up without ill effect, but if set too low, some items will not be fetched. `pretty` should be `0` if the photos are categorized as "ugly", `1` if they should be categorized as "pretty".
