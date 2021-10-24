@@ -10,7 +10,24 @@ import type { Tensor3D } from '@tensorflow/tfjs-node'
 
 const got = gotImport.default
 
-module.exports = async (req: vercel.VercelRequest, res: vercel.VercelResponse): Promise<void> => {
+const allowCors = fn => async (req, res) => {
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+  return await fn(req, res)
+}
+
+module.exports = allowCors(async (req: vercel.VercelRequest, res: vercel.VercelResponse): Promise<void> => {
 	const { origin, destination, getAll }: { origin: string, destination: string, getAll: boolean } = req.body,
 		[originLoc, destinationLoc] = await Promise.all([origin, destination].map(resolveLocation))
 	if (getAll) {
@@ -26,7 +43,7 @@ module.exports = async (req: vercel.VercelRequest, res: vercel.VercelResponse): 
 			score 
 		})
 	}
-}
+})
 
 let model: tf.LayersModel
 

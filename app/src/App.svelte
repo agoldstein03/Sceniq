@@ -1,15 +1,21 @@
 <script>
+  const urlMut = new URL(location);
+  urlMut.port = 3000;
+  urlMut.pathname = "/api/route";
+  const url = urlMut.toString();
   let form,
     code = "";
   function submitForm(e) {
     const data = Object.fromEntries(new FormData(form).entries());
-    fetch("/api/route", {
+
+    fetch(url, {
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
-      .then((response) => response.text())
-      .then((text) => {
-        code = text;
+      .then((response) => response.json())
+      .then((json) => {
+        code = JSON.stringify(json, null, 2);
       });
   }
 </script>
@@ -32,7 +38,7 @@
       <input type="submit" id="submit" />
     </div>
   </form>
-  <code>{code}</code>
+  <code><pre>{code}</pre></code>
 </template>
 
 <style lang="scss">
